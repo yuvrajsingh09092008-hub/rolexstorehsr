@@ -1,0 +1,10 @@
+:root{ --primary-gold:#d4af37; --dark:#121212; --muted:#666; }
+*{box-sizing:border-box}
+body{font-family:Montserrat,Arial,sans-serif;padding-top:80px;color:#222}
+.navbar-brand{font-family:'Playfair Display',serif;font-weight:700}
+.hero-section{background:linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.6)), url('https://wallpapers.com/images/high/luxury-rolex-watch-black-background-ovbk03iahosy3yl5.webp'); background-size:cover;background-position:center;color:#fff;padding:90px 0;text-align:center}
+.btn-gold{background:var(--primary-gold);color:#111;border:2px solid var(--primary-gold);padding:10px 22px;border-radius:50px}
+.product-card img{max-width:100%}
+.feature-box{padding:20px;border-radius:8px;background:#fff;box-shadow:0 6px 20px rgba(0,0,0,0.06);margin-bottom:12px}
+.text-gold{color:var(--primary-gold);font-weight:700}
+footer{background:#f8f9fa;padding:20px 0;margin-top:40px}

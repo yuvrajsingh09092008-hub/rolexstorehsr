@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Rolex Store HSR</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #121212;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
+            --text-light: #777;
+            --whatsapp-green: #25D366; 
+        }
+
+        /* Base Styles (Consistent) */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: #fff;
+            padding-top: 80px; 
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark-bg);
+        }
+        
+        /* Navbar Styles (Consistent) */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-bg) !important;
+            letter-spacing: 1px;
+        }
+
+        .navbar-brand span {
+            color: var(--primary-gold);
+        }
+
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-gold);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-gold) !important;
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary-gold);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* --- Contact Page Specific Styles --- */
+
+        .contact-header {
+            background-color: var(--light-bg);
+            padding: 50px 0;
+            text-align: center;
+            border-bottom: 2px solid var(--primary-gold);
+            margin-bottom: 50px;
+        }
+
+        .contact-header h1 {
+            font-size: 3rem;
+            color: var(--primary-gold);
+        }
+        
+        .info-card {
+            padding: 30px;
+            background-color: white;
+            border-left: 5px solid var(--primary-gold);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .info-card i {
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+
+        .info-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* WhatsApp Button Customization */
+        .btn-whatsapp-contact {
+            background-color: var(--whatsapp-green);
+            color: white;
+            border: none;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-transform: uppercase;
+            margin-top: auto; /* Push the button to the bottom of the flex container */
+        }
+
+        .btn-whatsapp-contact:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.02);
+        }
+        
+        /* General button in info-card */
+        .info-card a:not(.btn-whatsapp-contact) {
+            color: var(--dark-bg); 
+            font-weight: 600;
+            text-decoration: none;
+            margin-top: auto;
+        }
+
+        .contact-form {
+            padding: 40px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-send-message {
+            background-color: var(--dark-bg);
+            color: white;
+            font-weight: 700;
+            padding: 12px 30px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-send-message:hover {
+            background-color: var(--primary-gold);
+            color: var(--dark-bg);
+        }
+        
+        /* Map Section */
+        .map-container {
+            height: 400px;
+            background-color: #e9e9e9; /* Placeholder color */
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 50px;
+        }
+        
+        /* Footer Styles (Consistent) */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 80px 0 20px;
+            margin-top: 50px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--primary-gold);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        const storeContact = {
+            phone: '9563775000',
+            email: 'yuvrajsingh09092008@gmail.com',
+            address: 'Main Market, Mandi Adampur, Hisar, Haryana - 125032'
+        };
+
+        // Function to generate the WhatsApp link with pre-filled message
+        function getWhatsAppLink() {
+            const message = encodeURIComponent(`Hello Rolex Store HSR, I would like to inquire about general information or book an appointment.`);
+            return `https://wa.me/${storeContact.phone}?text=${message}`;
+        }
+    </script>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Rolex <span>Store HSR</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="watches.html">Watches</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="login.html" class="nav-link">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="contact-header">
+        <div class="container">
+            <h1>Get In Touch With Our Experts</h1>
+            <p class="lead">We are available to answer your questions regarding models, pricing, or appointments.</p>
+        </div>
+    </section>
+
+    <main class="container">
+        <div class="row mb-5">
+            <div class="col-lg-4 col-md-6">
+                <div class="info-card text-center">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Our Location</h4>
+                    <p class="text-secondary">Main Market, Mandi Adampur, Hisar, Haryana - 125032</p>
+                    <a href="https://maps.app.goo.gl/" target="_blank" style="font-weight: 600;">Get Directions</a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="info-card text-center">
+                    <i class="fas fa-phone-alt"></i>
+                    <h4>WhatsApp Us</h4>
+                    <p class="text-secondary">Official Contact: <span style="font-weight: 600;">+91 95637 75000</span></p>
+                    <a href="#" class="btn btn-whatsapp-contact" 
+                        onclick="window.open(getWhatsAppLink(), '_blank'); return false;">
+                        <i class="fab fa-whatsapp"></i> Chat Now
+                    </a>
+                    </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <div class="info-card text-center">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email Support</h4>
+                    <p class="text-secondary">Customer Service: yuvrajsingh09092008@gmail.com</p>
+                    <a href="mailto:yuvrajsingh09092008@gmail.com" style="font-weight: 600;">Send an Email</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <p class="text-secondary mb-4">Fill out the form for general inquiries or appointment requests.</p>
+                    <form action="#" method="POST">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <input type="text" class="form-control" id="subject" placeholder="e.g., Appointment or Price Inquiry" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="message" class="form-label">Your Message</label>
+                            <textarea class="form-control" id="message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-send-message">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3465.340050893072!2d75.7677561819799!3d29.718041539665494!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391264c7d0d0c3f5%3A0x608e9d8975a5e3c7!2sMandi%20Adampur%2C%20Haryana%20125032!5e0!3m2!1sen!2sin!4v1699043216895!5m2!1sen!2sin" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-logo">Rolex <span>Store HSR</span></div>
+                    <div class="footer-about">
+                        <p>Authorized Rolex retailer in Mandi Adampur, Hisar, Haryana. We offer the complete collection of new Rolex watches with full warranty.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 Rolex Store HSR. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

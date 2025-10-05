@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Rolex Store HSR</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght=700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-gold: #d4af37;
+            --dark-bg: #121212;
+            --light-bg: #f8f9fa;
+            --text-dark: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-dark);
+            background-color: #fff;
+            padding-top: 80px; 
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark-bg);
+        }
+
+        /* Navbar Styles (Logo Removed) */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-bg) !important;
+            letter-spacing: 1px;
+        }
+
+        .navbar-brand span {
+            color: var(--primary-gold);
+        }
+
+        .nav-link {
+            color: var(--text-dark) !important;
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-gold);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-gold) !important;
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary-gold);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about-hero {
+            background-color: var(--light-bg);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .about-hero .gold-line {
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary-gold);
+            margin: 20px auto 40px;
+        }
+
+        .content-section {
+            padding: 80px 0;
+        }
+        
+        .content-section img {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .content-section h2 {
+            margin-bottom: 25px;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .content-section h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-gold);
+            bottom: 0;
+            left: 0;
+        }
+
+        .mission-vision {
+            background-color: #f0f0f0;
+            padding: 60px 0;
+        }
+
+        .mission-vision h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 15px;
+        }
+
+        /* Footer Styles (Logo Removed) */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            padding: 80px 0 20px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo span {
+            color: var(--primary-gold);
+        }
+        
+        .footer-links h5, .footer-contact h5 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h5::after, .footer-contact h5::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-gold);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--primary-gold);
+            padding-left: 5px;
+        }
+        
+        .footer-contact .contact-item {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .footer-contact .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--primary-gold);
+        }
+
+        .footer-contact .contact-text p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .social-links a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-gold);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 50px;
+            padding-top: 20px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // Simple function to update cart count display
+        let cartCount = localStorage.getItem('cartCount') ? parseInt(localStorage.getItem('cartCount')) : 0; 
+        
+        function updateCartCountDisplay() {
+            const cartCountElement = document.querySelector('.cart-count');
+            if(cartCountElement) {
+                cartCountElement.textContent = cartCount;
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateCartCountDisplay);
+    </script>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                Rolex <span>Store HSR</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="watches.html">Watches</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="collections.html">Collections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center">
+                    <a href="cart.html" class="nav-link cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span> 
+                    </a>
+                    <a href="login.html" class="nav-link">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="about-hero">
+        <div class="container">
+            <h1>About Rolex Store HSR</h1>
+            <div class="gold-line"></div>
+            <p class="lead">Your trusted destination for genuine Rolex luxury in Hisar, Haryana.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="https://images.rolex.com/h/hF7q2k3v1yJ6g4c0V1w5K6o0Q3s8P6i6Z9e2W5n1V7f0X3j1C8i0p3c0_1650_640.webp" alt="Rolex Showroom Interior" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h2>Our Heritage of Trust</h2>
+                    <p>At **Rolex Store HSR**, we take immense pride in being an authorized retailer of the world's most prestigious watch brand. Located in the heart of Mandi Adampur, Hisar, our store is built on a foundation of integrity, unparalleled customer service, and a deep passion for horological excellence.</p>
+                    <p>We are dedicated to providing our clients with the complete Rolex experience, ensuring every purchase is a moment of celebration backed by official warranty and authenticity.</p>
+                </div>
+            </div>
+
+            <div class="row align-items-center flex-row-reverse">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <img src="https://images.rolex.com/h/hF3t1Q9m8oT7o9s1J8c5H6f4S9k7C5z4V1p7S5d7P4n0X4q0T5l0G7d0_1650_640.webp" alt="Watchmakers at work" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <h2>Unmatched Expertise</h2>
+                    <p>Our team comprises certified watch specialists who possess in-depth knowledge of every Rolex model, from the classic **Datejust** to the robust **Submariner**. Whether you are a first-time buyer or a seasoned collector, we offer personalized guidance to help you find the timepiece that perfectly matches your legacy.</p>
+                    <p>We handle every watch with the utmost care, reflecting the precision and quality inherent in the Rolex manufacturing process.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="mission-vision">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h4>Our Mission</h4>
+                    <p>To be the premier destination for authentic Rolex watches in Haryana, ensuring transparency, trust, and exceptional service in every interaction.</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Our Vision</h4>
+                    <p>To foster a lasting relationship with our clients, becoming a partner in their journey of marking life's milestones with a timeless Rolex watch.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="footer-logo">
+                        Rolex <span>Store HSR</span>
+                    </div>
+                    <div class="footer-about">
+                        <p>Authorized Rolex retailer in Mandi Adampur, Hisar, Haryana. We offer the complete collection of new Rolex watches with full warranty.</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="footer-links">
+                        <h5>Quick Links</h5>
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="watches.html">Watches</a></li>
+                            <li><a href="collections.html">Collections</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="footer-links">
+                        <h5>Customer Service</h5>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Shipping</a></li>
+                            <li><a href="#">Returns</a></li>
+                            <li><a href="#">Warranty</a></li>
+                            <li><a href="#">Size Guide</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="footer-contact">
+                        <h5>Contact Us</h5>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <p>Mandi Adampur, Hisar, Haryana</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <p>9563775000</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <p>yuvarjsingh09092008@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <p>Mon-Sat: 10:00 AM - 8:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2025 Rolex Store HSR. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                <p>Rolex is a registered trademark of Rolex Watch USA Inc. This website is not affiliated with Rolex USA.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/data-manager.js"></script> 
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Admin Dashboard</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"><link rel="stylesheet" href="../css/style.css"></head><body>
+<nav class="navbar navbar-expand-lg fixed-top bg-white shadow-sm"><div class="container"><a class="navbar-brand" href="../index.html">Rolex <span>Store HSR</span></a><div class="d-flex"><button id="logout-btn" class="btn btn-outline-danger">Logout</button></div></div></nav>
+<main class="container mt-5 pt-4">
+  <h2>Admin — Products</h2>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card p-3 mb-3">
+        <h5 id="form-title">Add New Product</h5>
+        <form id="product-form">
+          <input type="hidden" id="product-id">
+          <div class="mb-2"><input id="name" class="form-control" placeholder="Product Name" required></div>
+          <div class="mb-2"><input id="price" class="form-control" placeholder="Price (numbers only)" required></div>
+          <div class="mb-2"><input id="image-url" class="form-control" placeholder="Image URL (optional)"></div>
+          <div class="mb-2"><label>Or upload image:</label><input id="image-file" type="file" accept="image/*" class="form-control"></div>
+          <div class="form-check mb-2"><input id="isFeatured" class="form-check-input" type="checkbox"><label class="form-check-label" for="isFeatured">Featured</label></div>
+          <button class="btn btn-primary" type="submit">Save Product</button>
+          <button type="button" id="reset-btn" class="btn btn-secondary">Reset</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div id="products-list"></div>
+    </div>
+  </div>
+</main>
+<script src="../js/auth.js"></script>
+<script src="../js/data-manager.js"></script>
+<script>
+if(!localStorage.getItem('admin_logged_in')){ location.href = 'login.html'; }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(m){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]; }); }
+
+function refreshList(){
+  const all = Object.values(loadAllProducts());
+  if(all.length===0){ document.getElementById('products-list').innerHTML = '<p>No products yet.</p>'; return; }
+  let html='';
+  all.forEach(p=>{
+    html += `<div class="card mb-2 p-2 d-flex align-items-center"><div class="row g-2"><div class="col-md-3"><img src="${escapeHtml(p.image||'https://via.placeholder.com/200')}" style="max-width:100%;max-height:120px;object-fit:cover"></div><div class="col-md-6"><strong>${escapeHtml(p.name)}</strong><br><small>${formatPrice(p.price)}</small></div><div class="col-md-3 text-end"><button class="btn btn-sm btn-outline-primary mb-1" onclick="editProduct('${p.id}')"><i class="fas fa-edit"></i></button><button class="btn btn-sm btn-outline-danger" onclick="if(confirm('Delete product?')){ deleteProduct('${p.id}'); refreshList(); renderFeaturedProducts(); renderAllProducts('all-products-row'); }"><i class="fas fa-trash"></i></button></div></div></div>`;
+  });
+  document.getElementById('products-list').innerHTML = html;
+}
+
+function editProduct(id){
+  const p = getProductById(id);
+  if(!p) return alert('Not found');
+  document.getElementById('product-id').value = p.id;
+  document.getElementById('name').value = p.name;
+  document.getElementById('price').value = p.price;
+  document.getElementById('image-url').value = p.image || '';
+  document.getElementById('isFeatured').checked = !!p.isFeatured;
+  document.getElementById('form-title').innerText = 'Edit Product';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.getElementById('product-form').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const id = document.getElementById('product-id').value || null;
+  const name = document.getElementById('name').value.trim();
+  const price = Number(document.getElementById('price').value) || 0;
+  let image = document.getElementById('image-url').value.trim();
+  const file = document.getElementById('image-file').files[0];
+  if(!image && file){
+    image = await new Promise((res, rej)=>{ const r = new FileReader(); r.onload = ()=>res(r.result); r.onerror = ()=>res(''); r.readAsDataURL(file); });
+  }
+  const isFeatured = document.getElementById('isFeatured').checked;
+  saveOrUpdateProduct({ id, name, price, image, isFeatured });
+  document.getElementById('product-form').reset();
+  document.getElementById('form-title').innerText = 'Add New Product';
+  refreshList();
+  renderFeaturedProducts();
+  renderAllProducts('all-products-row');
+});
+
+document.getElementById('reset-btn').addEventListener('click', function(){ document.getElementById('product-form').reset(); document.getElementById('form-title').innerText = 'Add New Product'; });
+
+document.getElementById('logout-btn').addEventListener('click', function(){ localStorage.removeItem('admin_logged_in'); location.href = 'login.html'; });
+
+document.addEventListener('DOMContentLoaded', function(){ initSampleProducts(); refreshList(); });
+</script>
+</body></html>
